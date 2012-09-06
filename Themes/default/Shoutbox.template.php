@@ -149,7 +149,6 @@ function template_shoutbox($main = false)
 							<a href="#refresh" onclick="Shoutbox_GetMsgs(); return false;">' . $txt['sb_62'] . '</a>' . (!isset($context['shoutbox_popup']) ? '
 							| <a href="' . $scripturl . '?action=shoutbox" ' . (isset($context['shoutbox_popup']) ? '' : ' onclick="return reqWin(this.href,800, ' . $shoutbox['height'] . ' + 80);"') . '>' . $txt['sb_63'] . '</a>' : '') . ($context['shoutbox']['can_moderate'] ? '
 							| <a href="' . $scripturl . '?action=shoutbox;sa=moderate" ' . (isset($context['shoutbox_popup']) ? '' : ' onclick="return reqWin(this.href,800, ' . $shoutbox['height'] . ' + 80);"') . '>' . $txt['sb_61'] . '</a>' : '') . '
-							<span id="shoutbox_bar"> | <a title="Powered by SMFPacks.com" target="_blank" href="http://www.smfpacks.com/">&copy;</a></span>
 						</div>';
 		
 				// msgs: if $shoutbox['showmsg_down'], vertical align to bottom :|
@@ -620,7 +619,6 @@ function template_shoutbox_panel()
 				| <a href="javascript:;" onclick="if (window.confirm(\'' . $txt['sbm_8'] . '\')) Shoutbox_PruneMsgs();">' . $txt['sbm_clear'] . '</a>' : '') . ($context['shoutbox']['can_ban'] ? '
 				| <a href="javascript:;" onclick="Shoutbox_GetUsers();">' . $txt['sbm_view_banned'] . '</a>
 				| <a href="javascript:;" onclick="Shoutbox_BanUsers();">' . $txt['sbm_ban'] . '</a>' : '') . '
-				| <a title="SMFPacks.com" target="_blank" href="http://www.smfpacks.com/">&copy;</a>
 			</div>';
 
 		// content to show

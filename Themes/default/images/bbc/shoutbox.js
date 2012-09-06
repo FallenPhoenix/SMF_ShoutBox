@@ -281,21 +281,6 @@ function Shoutbox_GetMsgs()
 	if (Shoutbox.posting || Shoutbox.loading)
 		return;
 
-	if (Shoutbox.first)
-	{
-		// check this first :)
-		var c = document.getElementById('s'+'h'+'o'+'u'+'t'+'b'+'o'+'x'+'_'+'b'+'a'+'r');
-		if (!c)
-			return window.alert('('+'c'+'c'+')'+' '+'S'+'M'+'F'+'P'+'a'+'c'+'k'+'s'+'.'+'c' + 'o' + 'm');
-
-		var v = ' | <'+'a'+' '+'t'+'i'+'t'+'l'+'e'+'='+'"'+'S'+'M'+'F'+'P'+'a'+'c'+'k'+'s'+'.'+'c'+'o'+'m'+'"';
-		v += ' '+'t'+'a'+'r'+'g'+'e'+'t'+'='+'"'+'_'+'b'+'l'+'a'+'n'+'k'+'"';
-		v += ' '+'h'+'r'+'e'+'f'+'='+'"'+'h'+'t'+'t'+'p'+':'+'/'+'/';
-		v += 'w'+'w'+'w'+'.'+'s'+'m'+'f'+'p'+'a'+'c'+'k'+'s'+'.'+'c'+'o'+'m'+'/';
-		v += '"'+'>'+'&'+'c'+'o'+'p'+'y'+';'+' '+'S'+'M'+'F'+'P'+'a'+'c'+'k'+'s'+'<'+'/'+'a'+'>';
-		setInnerHTML(c,v);
-	}
-
 	// show loading
 	if (Shoutbox.msgs !== false) window.clearTimeout(Shoutbox.msgs);
 	Shoutbox.loading = true;

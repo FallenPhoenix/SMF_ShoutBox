@@ -63,6 +63,13 @@ $txt['sbm_29'] = 'Подтвердите для сохранения стиля\
 $txt['sbm_30'] = 'Укажите хотя бы одного пользователя'; // javascript alert
 $txt['sbm_31'] = 'Укажите причину'; // javascript alert
 $txt['sbm_32'] = 'Укажите проложительность бана в днях\nДля бессрочного оставьте это поле пустым'; // javascript alert
+$txt['sbm_msg_edit'] = '[Изменить]';
+$txt['sbm_msg_delete'] = '[Удалить]';
+$txt['sbm_return'] = 'Завершить';
+$txt['sbm_view_messages'] = 'Сообщения';
+$txt['sbm_clear'] = 'Очистить';
+$txt['sbm_view_banned'] = 'Баны';
+$txt['sbm_ban'] = 'Забанить';
 
 // admin panel
 $txt['sba_1'] = 'Управление мини-чатом';

@@ -66,6 +66,13 @@ $txt['sbm_29'] = 'Accept to keep style\nCancel to delete style'; // javascript a
 $txt['sbm_30'] = 'At least, you should define one user'; // javascript alert
 $txt['sbm_31'] = 'Define reason'; // javascript alert
 $txt['sbm_32'] = 'Define number of days for ban\nLet it empty for an undefined time'; // javascript alert
+$txt['sbm_msg_edit'] = '[Edit]';
+$txt['sbm_msg_delete'] = '[Delete]';
+$txt['sbm_return'] = 'Return Shoutbox';
+$txt['sbm_view_messages'] = 'Messages';
+$txt['sbm_clear'] = 'Clear messages';
+$txt['sbm_view_banned'] = 'Banned users';
+$txt['sbm_ban'] = 'Ban users';
 
 // admin panel
 $txt['sba_1'] = 'Shoutbox Admin';

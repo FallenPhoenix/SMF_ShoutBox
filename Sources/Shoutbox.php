@@ -508,7 +508,7 @@ function Shoutbox_Panel_GetMsgs($message = null)
 		$s['message_out'] = $cmd_me ? $s['realName'] . ' ' . $s['message_out'] : $s['message_out'];
 
 		$context['shoutbox']['msgs'][] = array(
-			'moderation' => ($context['shoutbox']['can_edit'] ? '<a href="javascript:;" onclick="Shoutbox_EditMsg(\'' . str_replace(array("'","&#039;"), "\'", $s['message']) . '\', ' . $s['ID_SHOUT'] . ')">[Edit]</a>' : '') . ($context['shoutbox']['can_delete'] ? ' <a href="javascript:;" onclick="if (window.confirm(\'' . $txt['sbm_12'] . '\')) Shoutbox_DeleteMsg(' . $s['ID_SHOUT'] . ');">[Delete]</a>' : ''),
+			'moderation' => ($context['shoutbox']['can_edit'] ? '<a href="javascript:;" onclick="Shoutbox_EditMsg(\'' . str_replace(array("'","&#039;"), "\'", $s['message']) . '\', ' . $s['ID_SHOUT'] . ')">' . $txt['sbm_msg_edit'] . '</a>' : '') . ($context['shoutbox']['can_delete'] ? ' <a href="javascript:;" onclick="if (window.confirm(\'' . $txt['sbm_12'] . '\')) Shoutbox_DeleteMsg(' . $s['ID_SHOUT'] . ');">' . $txt['sbm_msg_delete'] . '</a>' : ''),
 			'user' => ($cmd_me ? '' : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>') . ' <span style="color:' . $shoutbox['timeColor'] . '">[' . ($s['timestamp'] > 0 ? timeformat($s['timestamp'], $shoutbox['timeFormat']) : $txt['not_applicable']) . ']</span>:',
 			'msg' => '<span style="' . $s['style'] . '">' . Shoutbox_ParseSmileys($s['message_out']) . '</span>',
 		);

@@ -615,11 +615,11 @@ function template_shoutbox_panel()
 		echo '
 			<div class="windowbg smalltext" style="padding:0.5em 0.6em;text-align:right">
 				<span style="float:left"><img id="shoutbox_status" src="' . $settings['default_images_url'] . '/loading.gif" border="0" style="visibility:visible" /></span>
-				<b><a href="' . $scripturl . '?action=shoutbox">Return Shoutbox</a></b>' . ($context['shoutbox']['can_edit'] || $context['shoutbox']['can_delete'] ? '
-				| <a href="javascript:;" onclick="Shoutbox_GetMsgs();">Messages</a>' : '') . ($context['shoutbox']['can_prune'] ? '
-				| <a href="javascript:;" onclick="if (window.confirm(\'' . $txt['sbm_8'] . '\')) Shoutbox_PruneMsgs();">Clear messages</a>' : '') . ($context['shoutbox']['can_ban'] ? '
-				| <a href="javascript:;" onclick="Shoutbox_GetUsers();">Banned users</a>
-				| <a href="javascript:;" onclick="Shoutbox_BanUsers();">Ban users</a>' : '') . '
+				<b><a href="' . $scripturl . '?action=shoutbox">' . $txt['sbm_return'] . '</a></b>' . ($context['shoutbox']['can_edit'] || $context['shoutbox']['can_delete'] ? '
+				| <a href="javascript:;" onclick="Shoutbox_GetMsgs();">' . $txt['sbm_view_messages'] . '</a>' : '') . ($context['shoutbox']['can_prune'] ? '
+				| <a href="javascript:;" onclick="if (window.confirm(\'' . $txt['sbm_8'] . '\')) Shoutbox_PruneMsgs();">' . $txt['sbm_clear'] . '</a>' : '') . ($context['shoutbox']['can_ban'] ? '
+				| <a href="javascript:;" onclick="Shoutbox_GetUsers();">' . $txt['sbm_view_banned'] . '</a>
+				| <a href="javascript:;" onclick="Shoutbox_BanUsers();">' . $txt['sbm_ban'] . '</a>' : '') . '
 				| <a title="SMFPacks.com" target="_blank" href="http://www.smfpacks.com/">&copy;</a>
 			</div>';
 

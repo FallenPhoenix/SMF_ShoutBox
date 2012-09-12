@@ -41,7 +41,9 @@ $smcFunc['db_query']('', "INSERT IGNORE INTO {db_prefix}shoutbox_settings (varia
 				('banUpadte','0'),
 				('lastPrune', '0'),
 				('textColor','#000000'),
-				('showform_down','1')");
+				('showform_down','1'),
+				('showdate_left','0'),
+				('align_nicks','0')");
 
 // main table
 $smcFunc['db_query']('', "DROP TABLE IF EXISTS {db_prefix}shoutbox");

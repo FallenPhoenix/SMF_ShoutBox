@@ -100,5 +100,7 @@ $txt['sbas_showActions'] = 'Страницы, на которых <i>мини-ч
 $txt['sbas_out_main'] = 'Страницы, на которых <i>мини-чат</i> НЕ будет работать<br />' . $txt['sba_alert'];
 $txt['sbas_showform_down'] = 'Показывать поле ввода <u>под</u> окном чата';
 $txt['sbas_showmsg_down'] = 'Показывать новые сообщения <u>внизу</u>';
+$txt['sbas_showdate_left'] = 'Показывать дату <u>слева</u> от ника';
+$txt['sbas_align_nicks'] = 'Выравнивать ники по правому краю'
 
 ?>

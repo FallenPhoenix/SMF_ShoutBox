@@ -179,8 +179,10 @@ function Shoutbox_GetMsgs($error = false)
 			$context['shoutbox_echo']['new_msgs'] = true;
 
 		$cmd_me = substr($s['message'], 0, 17) == '<span class="me">';
+		$msg_nick = ($cmd_me ? '' : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>');
+		$msg_date = ' <span style="color:' . $shoutbox['timeColor'] . '">[' . ($s['timestamp'] > 0 ? timeformat($s['timestamp'], $shoutbox['timeFormat']) : $txt['not_applicable']) . ']</span>';
 		$context['shoutbox_echo']['msgs'][] = array(
-			'poster' => ($cmd_me ? '' : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>') . ' <span style="color:' . $shoutbox['timeColor'] . '">[' . ($s['timestamp'] > 0 ? timeformat($s['timestamp'], $shoutbox['timeFormat']) : $txt['not_applicable']) . ']</span>:',
+			'poster' => ($cmd_me ? $msg_date : ($shoutbox['showdate_left'] ? $msg_date . ' ' . $msg_nick : $msg_nick . ' ' . $msg_date)) . ': ',
 			'message' => '<span style="' . $s['style'] . '">' . ($cmd_me ? $s['realName'] . ' ' : '') . (isset($disabled['smileys']) ? censorText($s['message']) : Shoutbox_ParseSmileys(censorText($s['message']))) . '</div>',
 		);
 	}

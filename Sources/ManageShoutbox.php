@@ -80,7 +80,9 @@ function ManageShoutbox_Settings()
 		'out_main' => 'textarea',
 		'',
 		'showform_down' => 'checkbox',
-		'showmsg_down' => 'checkbox'
+		'showmsg_down' => 'checkbox',
+		'showdate_left' => 'checkbox',
+		'align_nicks' => 'checkbox'
 	);
 
 	$context['sub_template'] = 'manageshoutbox_settings';
@@ -122,7 +124,9 @@ function ManageShoutbox_Settings2()
 		'out_main' => 'textarea',
 
 		'showform_down' => 'checkbox',
-		'showmsg_down' => 'checkbox'
+		'showmsg_down' => 'checkbox',
+		'showdate_left' => 'checkbox',
+		'align_nicks' => 'checkbox'
 	);
 
 	foreach ($config as $s => $t)

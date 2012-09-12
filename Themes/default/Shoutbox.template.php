@@ -505,7 +505,7 @@ function template_shoutbox_getmsgs()
 			$_GET['row'] = $_GET['row'] == 0 ? 1: $_GET['row'];
 
 		foreach ($context['shoutbox_echo']['msgs'] as $shout)
-			echo '<tr id="shoutbox_row' . (empty($shoutbox['showmsg_down']) ? $_GET['row']-- : $_GET['row']++) . '"><td nowrap="nowrap" style="text-align:right" class="' . $shoutbox['printClass'] . '" valign="top">' .  $shout['poster'] . '</td><td style="text-align:left" class="' . $shoutbox['printClass'] . '" valign="top">' . $shout['message'] . '</td></tr>';
+			echo '<tr id="shoutbox_row' . (empty($shoutbox['showmsg_down']) ? $_GET['row']-- : $_GET['row']++) . '">' . ($shoutbox['align_nicks'] ? ('<td nowrap="nowrap" style="text-align:right" class="' . $shoutbox['printClass'] . '" valign="top">' .  $shout['poster'] . '</td><td style="text-align:left" class="' . $shoutbox['printClass'] . '" valign="top">' . $shout['message']) : ('<td class="' . $shoutbox['printClass'] . '" valign="top">' .  $shout['poster'] . $shout['message'])) . '</td></tr>';
 
 		echo (!$context['browser']['is_ie'] && !empty($shoutbox['showmsg_down']) ? '<tr id="shoutbox_msgs"></tr>' : '') . ']]></msgs>
 	<count><![CDATA[' . count($context['shoutbox_echo']['msgs']) . ']]></count>';

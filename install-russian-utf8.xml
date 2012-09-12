@@ -21,7 +21,7 @@ $txt['permissionname_shoutbox_edit'] = 'Правка сообщений';
 $txt['permissionname_shoutbox_delete'] = 'Удаление сообщений';
 $txt['permissionname_shoutbox_prune'] = 'Очистка чата';
 $txt['permissionname_shoutbox_ban'] = 'Бан пользователей';
-$txt['useful_shoutbox'] = 'Считаете этот мод полезным? <b>Не позвольте ему стать платным</b>, <a href="http://www.smfpacks.com/donate.php"><b>пожертвуйте на развитие</b></a>!';
+$txt['useful_shoutbox'] = 'Считаете этот мод полезным? <b>Не дайте ему стать платным</b>, <a href="http://www.smfpacks.com/donate.php"><b>пожертвуйте на развитие</b></a>!';
 // <-- SMFPacks Shoutbox
 ]]></add>
 		</operation>

@@ -10,6 +10,8 @@
 		<readme type="file" parsebbc="true">readme.txt</readme>
 		<redirect url="?action=admin;area=shoutbox" type="inline">SMFPacks Shoutbox has been installed now you're going to be redirected to its admin panel.</redirect>
 		<modification>install.xml</modification>
+		<modification>install-russian.xml</modification>
+		<modification>install-russian-utf8.xml</modification>
 		<require-dir name="Themes" destination="$boarddir" />
 		<require-file name="Sources/Subs-Shoutbox.php" destination="$sourcedir" />
 		<require-file name="Sources/Shoutbox.php" destination="$sourcedir" />
@@ -28,6 +30,8 @@
 		<remove-file error="skip" name="$themedir/shoutbox.swf" />
 		<remove-file error="skip" name="$themedir/shoutbox.mp3" />
 		<remove-file error="skip" name="$languagedir/Shoutbox.english.php" />
+		<remove-file error="skip" name="$languagedir/Shoutbox.russian.php" />
+		<remove-file error="skip" name="$languagedir/Shoutbox.russian-utf8.php" />
 		<remove-file error="skip" name="$imagesdir/loading.gif" />
 		<remove-file error="skip" name="$imagesdir/bbc/bgcolor.gif" />
 		<remove-file error="skip" name="$imagesdir/bbc/fontcolor.gif" />

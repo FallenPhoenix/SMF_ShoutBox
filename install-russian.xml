@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>FP:ShoutBox</id>
+	<version>2012.09.13</version>
+
+	<file name="$languagedir/Modifications.russian.php" error="skip">		
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// SMFPacks Shoutbox -->
+$txt['sba_title'] = 'Мини-чат';
+$txt['sba_link'] = 'Чат';
+$txt['permissiongroup_shoutbox'] = 'Мини-чат';
+$txt['permissiongroup_simple_shoutbox'] = 'Мини-чат';
+$txt['permissionname_shoutbox_view'] = 'Чтение сообщений';
+$txt['permissionname_shoutbox_post'] = 'Отправка сообщений';
+$txt['permissiongroup_shoutbox_panel'] = 'Модерация чата';
+$txt['permissiongroup_simple_shoutbox_panel'] = 'Модерация чата';
+$txt['permissionname_shoutbox_edit'] = 'Правка сообщений';
+$txt['permissionname_shoutbox_delete'] = 'Удаление сообщений';
+$txt['permissionname_shoutbox_prune'] = 'Очистка чата';
+$txt['permissionname_shoutbox_ban'] = 'Бан пользователей';
+$txt['useful_shoutbox'] = 'Считаете этот мод полезным? <b>Не позвольте ему стать платным</b>, <a href="http://www.smfpacks.com/donate.php"><b>пожертвуйте на развитие</b></a>!';
+// <-- SMFPacks Shoutbox
+]]></add>
+		</operation>
+	</file>
+	
+</modification>

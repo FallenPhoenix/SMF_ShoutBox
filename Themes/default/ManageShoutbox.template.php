@@ -16,7 +16,7 @@ function template_manageshoutbox_settings()
 	echo '
 					<tr>
 						<td colspan="2" style="text-align:left">
-							Do you find this modifications useful? <b>Do not let it be premium</b>, <a href="http://www.smfpacks.com/donate.php"><b>donate</b></a> and colaborate with it!
+							',$txt['useful_shoutbox'],'
 						</td>
 					</tr>
 					<tr>

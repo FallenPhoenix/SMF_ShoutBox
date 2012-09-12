@@ -123,7 +123,7 @@ function Shoutbox_isBanned()
 
 	return array(
 		'reason' => $row['reason'],
-		'end' => ($row['banEnd'] == 0 ? $txt['sb_8'] : ($row['banEnd'] > 0 ? timeformat($row['banEnd']) : $txt[470]))
+		'end' => ($row['banEnd'] == 0 ? $txt['sb_8'] : ($row['banEnd'] > 0 ? timeformat($row['banEnd']) : $txt['not_applicable']))
 	);	
 }
 

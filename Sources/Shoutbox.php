@@ -180,7 +180,7 @@ function Shoutbox_GetMsgs($error = false)
 
 		$cmd_me = substr($s['message'], 0, 17) == '<span class="me">';
 		$context['shoutbox_echo']['msgs'][] = array(
-			'poster' => ($cmd_me ? '' : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>') . ' <span style="color:' . $shoutbox['timeColor'] . '">[' . ($s['timestamp'] > 0 ? timeformat($s['timestamp'], $shoutbox['timeFormat']) : $txt[470]) . ']</span>:',
+			'poster' => ($cmd_me ? '' : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>') . ' <span style="color:' . $shoutbox['timeColor'] . '">[' . ($s['timestamp'] > 0 ? timeformat($s['timestamp'], $shoutbox['timeFormat']) : $txt['not_applicable']) . ']</span>:',
 			'message' => '<span style="' . $s['style'] . '">' . ($cmd_me ? $s['realName'] . ' ' : '') . (isset($disabled['smileys']) ? censorText($s['message']) : Shoutbox_ParseSmileys(censorText($s['message']))) . '</div>',
 		);
 	}
@@ -509,7 +509,7 @@ function Shoutbox_Panel_GetMsgs($message = null)
 
 		$context['shoutbox']['msgs'][] = array(
 			'moderation' => ($context['shoutbox']['can_edit'] ? '<a href="javascript:;" onclick="Shoutbox_EditMsg(\'' . str_replace(array("'","&#039;"), "\'", $s['message']) . '\', ' . $s['ID_SHOUT'] . ')">[Edit]</a>' : '') . ($context['shoutbox']['can_delete'] ? ' <a href="javascript:;" onclick="if (window.confirm(\'' . $txt['sbm_12'] . '\')) Shoutbox_DeleteMsg(' . $s['ID_SHOUT'] . ');">[Delete]</a>' : ''),
-			'user' => ($cmd_me ? '' : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>') . ' <span style="color:' . $shoutbox['timeColor'] . '">[' . ($s['timestamp'] > 0 ? timeformat($s['timestamp'], $shoutbox['timeFormat']) : $txt[470]) . ']</span>:',
+			'user' => ($cmd_me ? '' : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>') . ' <span style="color:' . $shoutbox['timeColor'] . '">[' . ($s['timestamp'] > 0 ? timeformat($s['timestamp'], $shoutbox['timeFormat']) : $txt['not_applicable']) . ']</span>:',
 			'msg' => '<span style="' . $s['style'] . '">' . Shoutbox_ParseSmileys($s['message_out']) . '</span>',
 		);
 	}
@@ -733,7 +733,7 @@ function Shoutbox_Panel_ListUsers()
 			'moderation' => '<a href="javascript:;" onclick="Shoutbox_EditUser(' . $u['ID_MEMBER'] . ', ' . ($u['banEnd'] == 0 ? 0 : ($u['banEnd'] - $u['banStart']) / 86400) . ', \'' . str_replace("'", "\'", $u['reason']) . '\')">[Edit]</a> <a href="javascript:;" onclick="if (window.confirm(\'' . $txt['sbm_25'] . '\')) Shoutbox_DeleteUser(' . $u['ID_MEMBER'] . ')">[Delete]</a>',
 			'user' => '<a href="' . $scripturl . '?action=profile;u=' . $u['ID_MEMBER'] . '" target="_blank">' . $u['realName'] . '</a>',
 			'reason' => $u['reason'] == '' ? '-' : $u['reason'],
-			'details' => '<b>' . $txt['sbm_13'] . ':</b> ' . ($u['banEnd'] < time() ? '<span style="color:red">' : '') . ($u['banEnd'] == 0 ? $txt['sb_8'] : ($u['banEnd'] > 0 ? timeformat($u['banEnd']) : $txt[470])) . ($u['banEnd'] < time() ? '</span>' : '') . '<br /><b>' . $txt['sbm_14'] . ':</b> <a href="' . $scripturl . '?action=profile;u=' . $u['banByID'] . '" target="_blank">' . $u['banBy'] . '</a> [' . ($u['banStart'] > 0 ? timeformat($u['banStart']) : $txt[470]) . ']'
+			'details' => '<b>' . $txt['sbm_13'] . ':</b> ' . ($u['banEnd'] < time() ? '<span style="color:red">' : '') . ($u['banEnd'] == 0 ? $txt['sb_8'] : ($u['banEnd'] > 0 ? timeformat($u['banEnd']) : $txt['not_applicable'])) . ($u['banEnd'] < time() ? '</span>' : '') . '<br /><b>' . $txt['sbm_14'] . ':</b> <a href="' . $scripturl . '?action=profile;u=' . $u['banByID'] . '" target="_blank">' . $u['banBy'] . '</a> [' . ($u['banStart'] > 0 ? timeformat($u['banStart']) : $txt['not_applicable']) . ']'
 		);
 	$smcFunc['db_free_result']($query);
 

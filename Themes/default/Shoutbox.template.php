@@ -225,7 +225,7 @@ function template_shoutbox_postbar($main)
 	*/
 
 	echo '
-						<td nowrap="nowrap" valign="middle" style="padding:0.1em 0 0 0.2em; cursor:default;">
+						<td nowrap="nowrap" valign="middle" style="padding:0.1em 0 0 0.2em; cursor:default;" onmousedown="return false;" onselectstart="return false;">
 							<div style="position:relative;">';
 
 	// disable sound

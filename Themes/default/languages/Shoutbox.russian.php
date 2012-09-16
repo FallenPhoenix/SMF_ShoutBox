@@ -5,7 +5,7 @@
 // errors javascript
 $txt['sb_12'] = 'Сообщение не должно быть короче '; // javascript alert
 $txt['sb_12b'] = 'Сообщение не должно быть длиннее '; // javascript alert
-$txt['sbe_1'] = 'Данное сообщение было отправлено'; // javascript alert
+$txt['sbe_1'] = 'Сообщение ещё отправляется'; // javascript alert
 $txt['sbe_2'] = 'Вы забанены'; // javascript alert
 $txt['sbe_3'] = 'Перезагрузите страницу, чтобы увидеть причину'; // javascript alert
 $txt['sbe_4'] = 'Вам не разрешён просмотр <i>чата</i>';

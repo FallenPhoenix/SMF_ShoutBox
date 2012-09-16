@@ -216,9 +216,6 @@ function template_shoutbox_postbar($main)
 						<td width="100%" style="padding-right: 1ex;">
 							<input type="text" id="shoutbox_message" style="text-decoration:underline;padding:2px 0;width:90%" onkeypress="var k = window.event ? event.keyCode : event.which; if (k == 13) Shoutbox_SentMsg(\'' . $context['session_id'] . '\');" />
 							<input type="submit" class="button_submit" value="', $txt['sendtopic_send'], '" onclick="Shoutbox_SentMsg(\'' . $context['session_id'] . '\');"" />
-						</td>
-						<td>
-							&nbsp;&nbsp;
 						</td>';
 
 	/* do we use this?
@@ -228,8 +225,8 @@ function template_shoutbox_postbar($main)
 	*/
 
 	echo '
-						<td nowrap="nowrap" valign="middle" style="padding:0.1em 0 0 0.2em">
-							<div style="position:relative">';
+						<td nowrap="nowrap" valign="middle" style="padding:0.1em 0 0 0.2em; cursor:default;">
+							<div style="position:relative;">';
 
 	// disable sound
 	echo '

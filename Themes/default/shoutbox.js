@@ -1,13 +1,9 @@
 /**********************************************************************************
 * shoutbox.js                                                                     *
 ***********************************************************************************
-*                                                                                 *
-* SMFPacks Shoutbox v1.0                                                          *
-* Copyright (c) 2009-2010 by Makito and NIBOGO. All rights reserved.              *
-* Powered by www.smfpacks.com                                                     *
-* Created by Makito                                                               *
-* Developed by NIBOGO for SMFPacks.com                                            *
-*                                                                                 *
+* SMFPacks Shoutbox                                                               *
+* Created by Makito and NIBOGO for www.smfpacks.com                               *
+* Last modified by F.Phoenix                                                      *
 **********************************************************************************/
 
 // we should use a Class ...

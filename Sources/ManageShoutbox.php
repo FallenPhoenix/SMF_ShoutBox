@@ -2,12 +2,9 @@
 /**********************************************************************************
 * ManageShoutbox.php                                                              *
 ***********************************************************************************
-*                                                                                 *
-* SMFPacks Shoutbox v1.0.4                                                        *
-* Copyright (c) 2009-2012 by NIBOGO. All rights reserved.              			  *
-* Powered by www.smfpacks.com                                                     *
-* Developed by NIBOGO for SMFPacks.com                                            *
-*                                                                                 *
+* SMFPacks Shoutbox                                                               *
+* Created by Makito and NIBOGO for www.smfpacks.com                               *
+* Last modified by F.Phoenix                                                      *
 **********************************************************************************/
 
 if (!defined('SMF'))

@@ -1,5 +1,10 @@
-// Hack's Park Color Picker: www.hackspark.com
-// File Version: 6
+/**********************************************************************************
+* colorpicker.js                                                                  *
+***********************************************************************************
+* SMFPacks Shoutbox                                                               *
+* Created by Makito and NIBOGO for www.smfpacks.com                               *
+* Last modified by F.Phoenix                                                      *
+**********************************************************************************/
 
 var colorPicker = new Array();
 colorPicker['bg'] = false;

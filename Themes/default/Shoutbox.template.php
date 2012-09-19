@@ -125,7 +125,6 @@ function template_shoutbox($main = false)
 	// view
 	echo'
 			<div class="windowbg2">
-				<span class="topslice"><span></span></span>
 					<div class="content">';
 				
 					// post: form and bbcodes
@@ -171,7 +170,6 @@ function template_shoutbox($main = false)
 				
 		echo'
 					</div>
-				<span class="botslice"><span></span></span>
 			</div>';
 
 	echo '

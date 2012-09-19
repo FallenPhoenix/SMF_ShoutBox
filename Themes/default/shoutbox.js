@@ -147,8 +147,7 @@ function Shoutbox_SetStyle(s, value, hide)
 			{
 				Shoutbox_CookieSet('shoutbox_color', Shoutbox.feature.color);
 				colorPicker['color'] = Shoutbox.feature.color;
-				if (hide) ColorPicker_ShowHide();
-				Shoutbox_Hover(document.getElementById('shoutbox_color'), false);
+				if (hide) Shoutbox_ShowMenu("color", "hide");
 			}
 			break;
 		case 'bgcolor':
@@ -159,8 +158,7 @@ function Shoutbox_SetStyle(s, value, hide)
 			{
 				Shoutbox_CookieSet('shoutbox_bgcolor', Shoutbox.feature.bgcolor);
 				colorPicker['bg_color'] = Shoutbox.feature.bgcolor;
-				if (hide) ColorPicker_ShowHide();
-				Shoutbox_Hover(document.getElementById('shoutbox_bgcolor'), false);
+				if (hide) Shoutbox_ShowMenu("bgcolor", "hide");
 			}
 			break;
 		case 'face':
@@ -171,8 +169,7 @@ function Shoutbox_SetStyle(s, value, hide)
 				document.getElementById("shoutbox_message").style.fontFamily = Shoutbox.feature.face;
 				Shoutbox_CookieSet('shoutbox_face', Shoutbox.feature.face);
 			}
-			document.getElementById('shoutbox_menu_faces').style.display = 'none';
-			Shoutbox_Hover(document.getElementById('shoutbox_faces'), false);
+			Shoutbox_ShowMenu("faces", "hide");
 			break;
 	}
 
@@ -186,14 +183,9 @@ function Shoutbox_ShowMenu(menu, action)
 	if (!menu) return;
 	
 	// закрываем другие менюшки
-	var opened = Shoutbox.menu;
-	if (opened && opened != menu)
-	{
-		Shoutbox_ShowMenu(opened, "hide");
-		Shoutbox_Hover(document.getElementById("shoutbox_" + opened), false);
-	}
+	if (Shoutbox.menu && Shoutbox.menu != menu) Shoutbox_ShowMenu(Shoutbox.menu, "hide");
 	
-	// теперь открывает выбранное
+	// теперь открываем или закрываем выбранное
 	var el = GetMenuElement(menu).style;
 	var display;
 	switch (action)
@@ -206,6 +198,7 @@ function Shoutbox_ShowMenu(menu, action)
 	if (show && menu.search("color$") >= 0) ColorPicker_ShowHide(menu == "bgcolor");
 	else el.display = display;
 	Shoutbox.menu = (show ? menu : "");
+	Shoutbox_Hover(document.getElementById("shoutbox_" + menu), show);
 }
 
 // Возвращает объект указанного меню.
@@ -230,11 +223,11 @@ function Shoutbox_Hover(s, m)
 	{
 		switch (s.alt)
 		{
-			case "faces": case "smileys":
+			case "smileys":
+			case "faces":
+			case "color":
+			case "bgcolor":
 				if (Shoutbox.menu == s.alt) return;
-				break;
-			case "color": case "bgcolor":
-				if (colorPicker['bg']  == (s.alt == "bgcolor") && document.getElementById("colorpicker").style.display != 'none') return;
 				break;
 			default:
 				if (Shoutbox.feature[s.alt]) return;

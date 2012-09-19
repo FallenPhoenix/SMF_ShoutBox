@@ -336,7 +336,7 @@ function template_shoutbox_postbar($main)
 													<div style="text-align:right">
 														<br /><a href="javascript:;" onclick="Shoutbox_SetStyle(colorPicker[\'bg\'] ? \'bgcolor\' : \'color\', document.getElementById(\'colorpicker_hexa\').value, true);">' . $txt['sb_13'] . '</a>
 														| <a href="javascript:;" onclick="Shoutbox_SetStyle(colorPicker[\'bg\'] ? \'bgcolor\' : \'color\', \'\', true);">' . $txt['sb_17'] . '</a>
-														<br /><br /><a href="javascript:;" onclick="ColorPicker_ShowHide(); Shoutbox_Hover(document.getElementById(colorPicker[\'bg\'] ? \'shoutbox_bgcolor\' : \'shoutbox_color\'), false);">' . $txt['sb_14'] . '</a>
+														<br /><br /><a href="javascript:;" onclick="Shoutbox_ShowMenu(colorPicker[\'bg\'] ? \'bgcolor\' : \'color\', \'hide\');">' . $txt['sb_14'] . '</a>
 													</div>
 												</td>
 											</tr>

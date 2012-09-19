@@ -198,6 +198,7 @@ function template_shoutbox($main = false)
 	unset($context['shoutbox']);
 }
 
+// Панель ввода кнопок.
 function template_shoutbox_postbar($main)
 {
 	global $context, $settings, $scripturl, $txt, $shoutbox, $boardurl, $user_info, $modSettings;
@@ -228,57 +229,58 @@ function template_shoutbox_postbar($main)
 						<td nowrap="nowrap" valign="middle" style="padding:0.1em 0 0 0.2em; cursor:default;" onmousedown="return false;" onselectstart="return false;">
 							<div style="position:relative;">';
 
-	// disable sound
+	// отключить звук
 	echo '
 								<img id="shoutbox_nosound" onclick="Shoutbox_SetStyle(\'nosound\');" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/nosound.gif" alt="nosound" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
 
-	// bold
+	// жирный
 	if (!isset($context['shoutbox']['disabled']['b']))
 		echo '
 								<img id="shoutbox_b" onclick="Shoutbox_SetStyle(\'b\');" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/bold.gif" alt="b" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
 
-	// italic
+	// курсив
 	if (!isset($context['shoutbox']['disabled']['i']))
 		echo '
 								<img id="shoutbox_i" onclick="Shoutbox_SetStyle(\'i\');" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/italicize.gif" alt="i" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
 
-	// underline
+	// подчеркнутый
 	if (!isset($context['shoutbox']['disabled']['u']))
 		echo '
 								<img id="shoutbox_u" onclick="Shoutbox_SetStyle(\'u\');" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/underline.gif" alt="u" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
 
-	// smileys
+	// смайлы
 	if (!isset($context['shoutbox']['disabled']['smileys']))
 		echo '
-								<img onclick="Shoutbox_SetStyle(\'smileys\');" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/smileys.gif" alt="smileys" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
+								<img id="shoutbox_smileys" onclick="Shoutbox_ShowMenu(\'smileys\');" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/smileys.gif" alt="smileys" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
 
-	// faces
+	// шрифт
 	if (!isset($context['shoutbox']['disabled']['faces']))
 		echo '
-								<img id="shoutbox_face" onclick="o = document.getElementById(\'shoutbox_faces\').style; o.display = o.display == \'none\' ? \'\' : \'none\';" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/face.gif" alt="faces" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
+								<img id="shoutbox_faces" onclick="Shoutbox_ShowMenu(\'faces\');" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/face.gif" alt="faces" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
 
 	// float
 	$float = 0;
 
-	// color
+	// цвет текста
 	if (!isset($context['shoutbox']['disabled']['color']))
 	{
 		$float = !isset($context['shoutbox']['disabled']['bgcolor']) ? 28 : 0;
 		echo '
-								<img id="shoutbox_color" onclick="document.getElementById(\'colorpicker\').style.right = \'' . $float . 'px\'; colorPicker[\'bg\'] = false; ColorPicker_ShowHide();" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/fontcolor.gif" alt="color" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
+								<img id="shoutbox_color" onclick="Shoutbox_ShowMenu(\'color\');" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/fontcolor.gif" alt="color" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
 		$float += 28;
 	}
 
-	// bgcolor
+	// цвет фона
 	if (!isset($context['shoutbox']['disabled']['bgcolor']))
 		echo '
-								<img id="shoutbox_bgcolor" onclick="document.getElementById(\'colorpicker\').style.right = \'0\'; colorPicker[\'bg\'] = true; ColorPicker_ShowHide();" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/bgcolor.gif" alt="bgcolor" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
+								<img id="shoutbox_bgcolor" onclick="Shoutbox_ShowMenu(\'bgcolor\');" onmouseover="Shoutbox_Hover(this, true)" onmouseout="Shoutbox_Hover(this, false)" src="' . $settings['default_images_url'] . '/bbc/bgcolor.gif" alt="bgcolor" style="background-image:url(\'' . $settings['images_url'] . '/bbc/bbc_bg.gif\');cursor:pointer" />';
 
-	// face
+
+	// меню шрифтов
 	if (!isset($context['shoutbox']['disabled']['faces']) && !empty($shoutbox['faces']))
 	{
 		echo '
-								<div class="tborder" style="display:none;position:absolute;' . (empty($shoutbox['showform_down']) ? 'bottom:-163px' : 'bottom:28px') . ';right:' . $float . 'px" id="shoutbox_faces">
+								<div id="shoutbox_menu_faces" class="tborder" style="display:none;position:absolute;' . (empty($shoutbox['showform_down']) ? 'bottom:-163px' : 'bottom:28px') . ';right:' . $float . 'px">
 									<div class="windowbg2 smalltext" style="text-align:left;padding:6px 8px;width:145px;overflow:auto;height:150px;max-height:150px">
 										';
 
@@ -291,13 +293,14 @@ function template_shoutbox_postbar($main)
 		$float += 28;
 	}
 
+	// меню смайлов
 	if (!isset($context['shoutbox']['disabled']['smileys']))
 	{
 		// SMF 2.0
 		$settings['smileys_url'] = $modSettings['smileys_url'] . '/' . $user_info['smiley_set'];
 
 		echo '
-								<div class="tborder" style="display:none;position:absolute;' . (empty($shoutbox['showform_down']) ? 'bottom:-163px' : 'bottom:28px') . ';right:' . $float . 'px" id="shoutbox_smileys">
+								<div id="shoutbox_menu_smileys" class="tborder" style="display:none;position:absolute;' . (empty($shoutbox['showform_down']) ? 'bottom:-163px' : 'bottom:28px') . ';right:' . $float . 'px">
 									<div class="windowbg2 smalltext" style="padding:6px 8px;text-align:left;width:65px;overflow:auto;height:150px;max-height:150px">
 										';
 
@@ -315,10 +318,11 @@ function template_shoutbox_postbar($main)
 		$float += 28;
 	}
 
-	// color & bgcolor picker
+	// выбор цвета текста и фона
 	if (!isset($context['shoutbox']['disabled']['color']) || !isset($context['shoutbox']['disabled']['bgcolor']))
+	{
 		echo '
-								<div class="tborder" style="display:none;position:absolute;' . (empty($shoutbox['showform_down']) ? 'bottom:-163px' : 'bottom:28px') . ';right:0" id="colorpicker">
+								<div id="colorpicker" class="tborder" style="display:none;position:absolute;' . (empty($shoutbox['showform_down']) ? 'bottom:-163px' : 'bottom:28px') . ';right:0">
 									<div class="windowbg2">
 										<table cellpadding="4" cellspacing="0">
 											<tr>
@@ -344,6 +348,7 @@ function template_shoutbox_postbar($main)
 										</table>
 									</div>
 								</div>';
+	}
 
 	echo '
 							</div>

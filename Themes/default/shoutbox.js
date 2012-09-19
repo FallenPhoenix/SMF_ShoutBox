@@ -13,14 +13,14 @@ Shoutbox.height = 180; // setting
 Shoutbox.scroll = 0;
 Shoutbox.first = true;
 
-// lang
+// Строки текущей локали
 Shoutbox.lang = new Object;
 Shoutbox.lang.tooshort = 'lang:tooshort';
 Shoutbox.lang.toolong = 'lang:toolong';
 Shoutbox.lang.posting = 'lang:posting';
 Shoutbox.lang.banned = 'lang:banned';
 
-// disable data
+// Отключенные кнопки
 Shoutbox.disabled = new Object;
 Shoutbox.disabled.color = false;
 Shoutbox.disabled.bgcolor = false;
@@ -39,6 +39,12 @@ Shoutbox.feature.color = ''; // setting
 Shoutbox.feature.bgcolor = ''; // setting
 Shoutbox.feature.face = '';
 Shoutbox.hide = false;
+Shoutbox.menu = '';
+
+
+// ** Опции и кнопки интерфейса ** \\
+
+// Загружает опции из кукисов.
 function Shoutbox_GetFeatures()
 {
 	var b = Shoutbox.disabled.b ? '' : Shoutbox_CookieGet('shoutbox_b');
@@ -104,6 +110,7 @@ function Shoutbox_GetFeatures()
 	}
 }
 
+// Переключение опций.
 function Shoutbox_SetStyle(s, value, hide)
 {
 	switch(s)
@@ -164,13 +171,8 @@ function Shoutbox_SetStyle(s, value, hide)
 				document.getElementById("shoutbox_message").style.fontFamily = Shoutbox.feature.face;
 				Shoutbox_CookieSet('shoutbox_face', Shoutbox.feature.face);
 			}
-			document.getElementById('shoutbox_faces').style.display = 'none';
-			Shoutbox_Hover(document.getElementById('shoutbox_face'), false);
-			break;
-		case 'smileys':
-			// show or hide
-			var o = document.getElementById('shoutbox_smileys').style;
-			o.display = o.display == 'none' ? '' : 'none';
+			document.getElementById('shoutbox_menu_faces').style.display = 'none';
+			Shoutbox_Hover(document.getElementById('shoutbox_faces'), false);
 			break;
 	}
 
@@ -178,6 +180,72 @@ function Shoutbox_SetStyle(s, value, hide)
 	if (!Shoutbox.first) document.getElementById("shoutbox_message").focus(document.getElementById("shoutbox_message").value.length - 1);
 }
 
+// Открывает или закрывает указанное меню панели кнопок.
+function Shoutbox_ShowMenu(menu, action)
+{
+	if (!menu) return;
+	
+	// закрываем другие менюшки
+	var opened = Shoutbox.menu;
+	if (opened && opened != menu)
+	{
+		Shoutbox_ShowMenu(opened, "hide");
+		Shoutbox_Hover(document.getElementById("shoutbox_" + opened), false);
+	}
+	
+	// теперь открывает выбранное
+	var el = GetMenuElement(menu).style;
+	var display;
+	switch (action)
+	{
+		case "show": display = ""; break;
+		case "hide": display = "none"; break;
+		default: display = (el.display == "none" ? "" : "none"); break;
+	}
+	var show = (display != "none");
+	if (show && menu.search("color$") >= 0) ColorPicker_ShowHide(menu == "bgcolor");
+	else el.display = display;
+	Shoutbox.menu = (show ? menu : "");
+}
+
+// Возвращает объект указанного меню.
+function GetMenuElement(menu)
+{
+	var id;
+	switch (menu)
+	{
+		case "smileys": case "faces": id = "shoutbox_menu_" + menu; break;
+		case "color": case "bgcolor": id = "colorpicker"; break;
+		default: id = ""; break;
+	}
+	return document.getElementById(id);
+}
+
+// Включает/отключает подсветку кнопок.
+// s - элемент документа (тег <img>)
+// m - подсвечивать или нет (bool)
+function Shoutbox_Hover(s, m)
+{
+	if (!m && s.alt != '')
+	{
+		switch (s.alt)
+		{
+			case "faces": case "smileys":
+				if (Shoutbox.menu == s.alt) return;
+				break;
+			case "color": case "bgcolor":
+				if (colorPicker['bg']  == (s.alt == "bgcolor") && document.getElementById("colorpicker").style.display != 'none') return;
+				break;
+			default:
+				if (Shoutbox.feature[s.alt]) return;
+				break;
+		}
+	}
+
+	s.style.backgroundImage = "url(" + smf_images_url + (m ? "/bbc/bbc_hoverbg.gif)" : "/bbc/bbc_bg.gif)");
+}
+
+// Сворачивает/разворачивает чат.
 function Shoutbox_ShowHide(s)
 {
 	if (Shoutbox.popup) return false;
@@ -222,6 +290,9 @@ function Shoutbox_CookieSet(n, v)
 {
 	document.cookie = n + '=' + escape(v);
 }
+
+
+// *** Получение и отправка сообщений *** \\
 
 // function from SMF
 function Shoutbox_getXML(url, callback)
@@ -435,7 +506,7 @@ function Shoutbox_SentMsg(sc)
 	if (Shoutbox.first)
 		return;
 
-	if (Shoutbox.posting)
+	if (Shoutbox.posting) // не дает отправлять новые сообщения, пока не отправилось предыдущее; можно заменить на очередь отправлений
 		return window.alert(Shoutbox.lang.posting);
 
 	Shoutbox.posting = true;
@@ -498,33 +569,9 @@ function Shoutbox_PostMsg(XMLDoc)
 	Shoutbox_PutMsgs(XMLDoc);
 }
 
-function Shoutbox_Hover(s,m)
-{
-	if (!m && s.alt != '')
-	{
-		if (s.alt == 'faces' || s.alt == 'smileys')
-		{
-			if (document.getElementById("shoutbox_" + s.alt).style.display != 'none')
-				return;
-		}
-		else if (s.alt == 'color')
-		{
-			if (document.getElementById("colorpicker").style.display != 'none')
-				return;
-		}
-		else if (s.alt == 'bgcolor')
-		{
-			if (document.getElementById("colorpicker").style.display != 'none')
-				return;
-		}
-		else if (Shoutbox.feature[s.alt])
-			return;
-	}
-
-	s.style.backgroundImage = "url(" + smf_images_url + (m ? "/bbc/bbc_hoverbg.gif)" : "/bbc/bbc_bg.gif)");
-}
 
 // ...
+
 function Shoutbox_toEntities(text)
 {
 	var entities = "";
@@ -539,7 +586,7 @@ function Shoutbox_toEntities(text)
 	return entities;
 }
 
-function openWin(url,w,h,n)
+function openWin(url, w, h, n)
 {
 	if ((w && self.screen.availWidth * 0.8 < w) || (h && self.screen.availHeight * 0.8 < h))
 	{

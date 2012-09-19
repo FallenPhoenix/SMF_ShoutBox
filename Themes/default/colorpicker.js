@@ -11,32 +11,17 @@ colorPicker['bg'] = false;
 colorPicker['bg_color'] = '';
 colorPicker['color'] = '';
 
-function ColorPicker_ShowHide(c)
+function ColorPicker_ShowHide(bg, action)
 {
-	if (document.getElementById("colorpicker").style.display == 'none')
-		document.getElementById("colorpicker").style.display = '';
-	else
-		document.getElementById("colorpicker").style.display = 'none';
-
-	// SMF 2.0.x
-	if (!document.getElementById("cmd_color"))
-		return;
-
-	if (typeof(c) != "undefined")
-		colorPicker['bg'] = c;
-
-	if (colorPicker['bg'])
+	var el = document.getElementById("colorpicker").style;
+	switch (action)
 	{
-		document.getElementById("cmd_bgcolor").style.display = '';
-		document.getElementById("cmd_color").style.display = 'none';
-		document.getElementById("colorpicker").style.right = '29px';
+		case 'show': el.display = ''; break;
+		case 'hide': el.display = 'none'; break;
+		default: el.display = (el.display == 'none' ? '' : 'none'); break;
 	}
-	else
-	{
-		document.getElementById("cmd_color").style.display = '';
-		document.getElementById("cmd_bgcolor").style.display = 'none';
-		document.getElementById("colorpicker").style.right = '82px';
-	}
+	if (typeof(bg) != "undefined") colorPicker['bg'] = bg;
+	document.getElementById("colorpicker").style.right = (colorPicker['bg'] ? '0px' : '28px');
 }
 
 colorPicker['base_hexa'] = "0123456789ABCDEF";

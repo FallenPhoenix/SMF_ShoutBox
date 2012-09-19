@@ -4,7 +4,7 @@
 	<name>SMFPacks Shoutbox (FPMod)</name>
 	<id>FP:ShoutBox</id>
 	<type>modification</type>
-	<version>2012.09.13</version>
+	<version>2012.09.19</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme type="file" parsebbc="true">readme.txt</readme>

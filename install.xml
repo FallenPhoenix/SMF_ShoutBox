@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 	<name>SMFPacks Shoutbox</name>
 	<id>FP:ShoutBox</id>
-	<version>2012.09.13</version>
+	<version>2012.09.19</version>
 	
 	<file name="$boarddir/index.php">
 		<operation>

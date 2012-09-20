@@ -104,6 +104,6 @@ $txt['sbas_out_main'] = 'Pages where <i>Shoutbox\'s main function</i> will be ig
 $txt['sbas_showform_down'] = 'Show post bar down messages';
 $txt['sbas_showmsg_down'] = 'Show new messages at the end';
 $txt['sbas_showdate_left'] = 'Show date at first';
-$txt['sbas_align_nicks'] = 'Align nicknames right'
+$txt['sbas_align_nicks'] = 'Align nicknames right';
 
 ?>

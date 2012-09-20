@@ -33,6 +33,7 @@ function ManageShoutbox()
 	$subActions[$_REQUEST['sa']]();
 }
 
+// Получение настроек.
 function ManageShoutbox_Settings()
 {
 	global $context, $smcFunc;
@@ -86,6 +87,7 @@ function ManageShoutbox_Settings()
 	$context['shoutbox_form'] = '?action=admin;area=shoutbox;sa=settings2';
 }
 
+// Сохранение настроек.
 function ManageShoutbox_Settings2()
 {
 	global $smcFunc, $smcFunc;
@@ -136,6 +138,7 @@ function ManageShoutbox_Settings2()
 		else
 			$v = !isset($_POST[$s]) ? 0 : addslashes($smcFunc['htmlspecialchars']($smcFunc['htmltrim'](stripslashes($_POST[$s])), ENT_QUOTES));
 
+		// с таким кодом неотмеченные чекбоксы из базы просто удаляются (т.е. 0 не пишется), так что проверять их надо через empty()
 		if (!empty($v))
 			$smcFunc['db_insert'](
 				'replace',

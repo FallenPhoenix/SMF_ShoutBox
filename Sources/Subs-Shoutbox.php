@@ -34,7 +34,7 @@ function Shoutbox_Load($action = null)
 		unset($context['shoutbox']);
 		return $action;
 	}
-	$context['shoutbox']['can_post'] = !$context['user']['is_guest'] && $context['shoutbox']['can_view'] && allowedTo('shoutbox_post');
+	$context['shoutbox']['can_post'] = $context['shoutbox']['can_view'] && allowedTo('shoutbox_post');
 
 	// load config, template and language :P
 	if (loadLanguage('Shoutbox') == false)

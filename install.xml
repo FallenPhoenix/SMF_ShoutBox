@@ -71,7 +71,6 @@ call_user_func(Shoutbox_Load(smf_main()));]]></add>
 			<search position="before"><![CDATA[$context['non_guest_permissions'] = array(]]></search>
 			<add><![CDATA[
 		// SMFPacks Shoutbox -->
-		'shoutbox_post',
 		'shoutbox_edit',
 		'shoutbox_delete',
 		'shoutbox_prune',

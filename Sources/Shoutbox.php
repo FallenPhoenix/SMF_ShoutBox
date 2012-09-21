@@ -63,7 +63,7 @@ function Shoutbox_Popup()
 		unset($context['shoutbox']);
 		return;
 	}
-	$context['shoutbox']['can_post'] = !$context['user']['is_guest'] && $context['shoutbox']['can_view'] && allowedTo('shoutbox_post');
+	$context['shoutbox']['can_post'] = $context['shoutbox']['can_view'] && allowedTo('shoutbox_post');
 
 	// post features... if can't post, scape
 	if (!$context['shoutbox']['can_post'])
@@ -174,9 +174,12 @@ function Shoutbox_GetMsgs($error = false)
 	{
 		if ($context['user']['id'] != $s['ID_MEMBER'])
 			$context['shoutbox_echo']['new_msgs'] = true;
-
+			
+		if (empty($s['ID_MEMBER']))
+			$s['realName'] = $txt['guest'];
+			
 		$cmd_me = substr($s['message'], 0, 17) == '<span class="me">';
-		$msg_nick = ($cmd_me ? '' : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>');
+		$msg_nick = ($cmd_me ? '' : (empty($s['ID_MEMBER']) ? $s['realName'] : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>'));
 		$msg_date = ' <span style="color:' . $shoutbox['timeColor'] . '">[' . ($s['timestamp'] > 0 ? timeformat($s['timestamp'], $shoutbox['timeFormat']) : $txt['not_applicable']) . ']</span>';
 		$context['shoutbox_echo']['msgs'][] = array(
 			'poster' => ($cmd_me ? $msg_date : (empty($shoutbox['showdate_left']) ? $msg_nick . ' ' . $msg_date : $msg_date . ' ' . $msg_nick)) . ': ',
@@ -194,7 +197,7 @@ function Shoutbox_SendMsg()
 	global $smcFunc, $txt, $user_info;
 	global $context, $shoutbox;
 
-	if ($context['user']['is_guest'] || !isset($_GET['xml']) || !allowedTo('shoutbox_view') || !allowedTo('shoutbox_post'))
+	if (!isset($_GET['xml']) || !allowedTo('shoutbox_view') || !allowedTo('shoutbox_post'))
 		die();
 
 	if (loadLanguage('Shoutbox') == false)
@@ -391,6 +394,8 @@ function Shoutbox_SendMsg()
 	return Shoutbox_GetMsgs();
 }
 
+// *** Модерация *** \\
+
 function Shoutbox_Panel()
 {
 	global $context, $txt;
@@ -491,6 +496,9 @@ function Shoutbox_Panel_GetMsgs($message = null)
 	$context['shoutbox']['msgs'] = array();
 	while ($s = $smcFunc['db_fetch_assoc']($query))
 	{
+		if (empty($s['ID_MEMBER']))
+			$s['realName'] = $txt['guest'];
+	
 		$s['message_out'] = $s['message'];
 
 		// first, delete links :)
@@ -508,7 +516,7 @@ function Shoutbox_Panel_GetMsgs($message = null)
 
 		$context['shoutbox']['msgs'][] = array(
 			'moderation' => ($context['shoutbox']['can_edit'] ? '<a href="javascript:;" onclick="Shoutbox_EditMsg(\'' . str_replace(array("'","&#039;"), "\'", $s['message']) . '\', ' . $s['ID_SHOUT'] . ')">' . $txt['sbm_msg_edit'] . '</a>' : '') . ($context['shoutbox']['can_delete'] ? ' <a href="javascript:;" onclick="if (window.confirm(\'' . $txt['sbm_12'] . '\')) Shoutbox_DeleteMsg(' . $s['ID_SHOUT'] . ');">' . $txt['sbm_msg_delete'] . '</a>' : ''),
-			'user' => ($cmd_me ? '' : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>') . ' <span style="color:' . $shoutbox['timeColor'] . '">[' . ($s['timestamp'] > 0 ? timeformat($s['timestamp'], $shoutbox['timeFormat']) : $txt['not_applicable']) . ']</span>:',
+			'user' => ($cmd_me ? '' : (empty($s['ID_MEMBER']) ? $s['realName'] : '<a href="' . $scripturl . '?action=profile;u=' . $s['ID_MEMBER'] . '" target="_blank"' . (!empty($s['colorName']) ? ' style="color:' . $s['colorName'] . '"' : '') . '>' . $s['realName'] . '</a>')) . ' <span style="color:' . $shoutbox['timeColor'] . '">[' . ($s['timestamp'] > 0 ? timeformat($s['timestamp'], $shoutbox['timeFormat']) : $txt['not_applicable']) . ']</span>:',
 			'msg' => '<span style="' . $s['style'] . '">' . Shoutbox_ParseSmileys($s['message_out']) . '</span>',
 		);
 	}
